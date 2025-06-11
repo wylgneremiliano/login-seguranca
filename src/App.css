@@ -21,6 +21,7 @@ body {
   height: 65%;
   background-color: white;
   border-radius: 10px;
+  display: flex;
 }
 
 .imagemLogin {
@@ -29,5 +30,32 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* background-color: red; */
+
+}
+
+form {
+  width: 50%;
+  max-height: 100%;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+
+}
+
+h2 {
+  color: black;
+}
+
+p {
+  color: black;
+}
+
+.marginBotton {
+  margin-bottom: 40px;
+}
+
+.inputs-usuario{
+  width: 60%;
 }
