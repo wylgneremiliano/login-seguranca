@@ -37,7 +37,6 @@ const LoginForm = ({ handleLogin }: Props) => {
             };
 
             // Validação dos campos de usuário 'username'
-
             if (values.username.length === 0) {
                 errors.username = "Campo obrigatório!"
             }
