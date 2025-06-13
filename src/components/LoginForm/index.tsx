@@ -19,6 +19,53 @@ const LoginForm = ({ handleLogin }: Props) => {
                 password: values.password
             })
         },
+        validate: values => {
+            const regexUpperCase = /(?=[A-Z])/g;
+            const regexSpecialChar = /(?=[!@#\$%\^\&*\)\(+=._-])/g;
+            const regexNumber = /\d/;
+
+            const upperCase = regexUpperCase.test(values.password);
+            const specialChar = regexSpecialChar.test(values.password);
+            const numb = regexNumber.test(values.password)
+
+
+
+
+            const errors: Usuario = {
+                username: "",
+                password: ""
+            };
+
+            // Validação dos campos de usuário 'username'
+
+            if (values.username.length === 0) {
+                errors.username = "Campo obrigatório!"
+            }
+            if (values.username.length < 3) {
+                errors.username = "Campo deve conter no mínimo 3 caracteres!"
+            }
+
+
+            // Validação dos campos de senha 'password'
+            if (!upperCase) {
+                errors.password = "Campo deve conter letras maiúsculas!"
+            }
+            if (!specialChar) {
+                errors.password = "Campo deve conter caracteres especiais!"
+            }
+            if (values.password.length < 8) {
+                errors.password = "Campo deve conter no mínimo 8 caracteres!"
+            }
+            if (values.password.length === 0) {
+                errors.password = "Campo obrigatório!"
+            }
+            if (!numb) {
+                errors.password = "Campo deve conter números!";
+            }
+
+
+            return errors;
+        }
     });
     return (
         <form onSubmit={formik.handleSubmit}>
@@ -34,6 +81,8 @@ const LoginForm = ({ handleLogin }: Props) => {
                     label="username"
                     variant="standard"
                     fullWidth
+                    helperText={formik.errors.username}
+                    error={!!formik.errors.username}
                 />
                 <TextField
                     id="password"
@@ -44,6 +93,8 @@ const LoginForm = ({ handleLogin }: Props) => {
                     label="password"
                     variant="standard"
                     fullWidth
+                    helperText={formik.errors.password}
+                    error={!!formik.errors.password}
                 />
             </div>
             <div className='marginBotton'></div>
